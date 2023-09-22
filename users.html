@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="NAME GOES HERE">
+        <meta name="description" content="The Fetch API is used for client server communication, and async/await can be used in a similar way. Both work with Promise syntax on the returned data from the API.">
+        <title>FETCH API & Async/Await</title>
+        <link href="styles.css" rel="stylesheet">
+        <script src="scripts.js" defer></script>
+    </head>
+    <body>
+        <header>
+            <h1>Random User Generator with Fetch & Async/Await</h1>
+            <nav>
+                <h2 class="sr-only">Main Navigation</h2>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Users</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <p>Today we'll be working with the <a href="https://randomuser.me/" target="_blank">Random User Generator API</a> to make calls using both Fetch and Async/Await to compare syntax. You do not need an API key for this activity, and can paste the endpoint for this API into the browser to see the returned data if you'd like to get an idea of what the JSON will look like.</p>
+            <section id="fetchUsers">
+                <h2>Fetch User List</h2>
+                <div id="userPage1"></div>
+                <nav aria-label="Pagination Navigation for Fetch Users" id="pagination1" hidden>
+                    <ul>
+                        <li><a href="/previousPage" aria-label="Go to the Previous Page, current page is page 1" class="btn">&lsaquo;</a></li>
+                        <li><a href="/page1" aria-label="Current Page, Page One" class="btn current-page" aria-current="true">1</a></li>
+                        <li><a href="/page2" aria-label="Go to Page Two" class="btn" aria-current="false">2</a></li>
+                        <li><a href="/page3" aria-label="Go to Page Three" class="btn" aria-current="false">3</a></li>
+                        <li><a href="/page4" aria-label="Go to Page Four" class="btn" aria-current="false">4</a></li>
+                        <li><a href="/nextPage" aria-label="Go to the Next Page, current page is page 1" class="btn">&rsaquo;</a></li>
+                    </ul>
+                </nav>
+            </section>
+
+            <section id="asyncUsers">
+                <h2>Async User List</h2>
+                <div id="userPage2"></div>
+                <nav aria-label="Pagination Navigation for Async Users" id="pagination2" hidden>
+                    <ul>
+                        <li><a href="/previousPage" aria-label="Go to the Previous Page, current page is page 1" class="btn">&lsaquo;</a></li>
+                        <li><a href="/page1" aria-label="Current Page, Page One" class="btn current-page" aria-current="true">1</a></li>
+                        <li><a href="/page2" aria-label="Go to Page Two" class="btn" aria-current="false">2</a></li>
+                        <li><a href="/page3" aria-label="Go to Page Three" class="btn" aria-current="false">3</a></li>
+                        <li><a href="/page4" aria-label="Go to Page Four" class="btn" aria-current="false">4</a></li>
+                        <li><a href="/nextPage" aria-label="Go to the Next Page, current page is page 1" class="btn">&rsaquo;</a></li>
+                    </ul>
+                </nav>
+            </section>
+        </main>
+        <footer>
+            <p>Copyright &copy; 2023 - GIT418 - Prof. Barnett</p>
+        </footer>
+    </body>
+</html>
