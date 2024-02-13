@@ -23,52 +23,77 @@ function displayUsers(output, id, data){
 
     // split the returned data into four arrays, each will represent a "page" of users with three on each page
     // TO DO: divide the data returned into four arrays
+    for(let i = 0; i < 12; i++){
+        if(i < 3){
+            page1.push(data.results[i]);
+        }else if(i < 6){
+            page2.push(data.results[i]);
+        }else if(i <9){
+            page3.push(data.results[i]);
+        }else{
+            page4.push(data.results[i]);
+        }
+    }
 
     // displays each user in a section, with semantic markup for their name, email address, and image
     function displayPage(currentPage){
         // TO DO - complete the code to display the JSON data to the page
+        for(let user of currentPage){
 
-        // iterate through the data for the page's array and display it on the page
+            // iterate through the data for the page's array and display it on the page
         
 
             // create a container to store each user's content as we build our output
+            let userSection = document.createElement("section");
             
 
             // add a class to that section/each section containing a user
+            userSection.classList.add("user");
             
 
             // create the image that will hold the user image in each section
-            
+            let profilePhoto = document.createElement("img");
 
             // set the image attributes so that it will display the correct image
+            profilePhoto.src = `${user.picture.large}`;
+            profilePhoto.alt = `${user.name.first} ${user.name.last}`;
             
             
             // add the image to the current user section
+            userSection.appendChild(profilePhoto);
             
 
             // create the heading to store the user name in each section
+            let userName = document.createElement("h3");
 
             
             // add the name to the element
+            userName.textContent = `${user.name.first} ${user.name.last}`;
             
             
             // add the name to the section after the image
+            userSection.appendChild(userName);
             
 
             // create the email address link for the user in each section
+            let emailAddress = document.createElement("a");
             
             
             // set the link text and attributes
-            
+            emailAddress.href = `mailto:${user.email}`;
+            emailAddress.textContent = `${user.email}`;
             
             // add the email address to the section
+            userSection.appendChild(emailAddress);
             
             
 
             // add the completed user section to the page before the pagination controls
-            
+            userContainer.appendChild(userSection);
 
             // empty the section of content to get it ready for the next user
+            userSection.nodeValue = "";
+        }
             
         
     }
@@ -226,10 +251,34 @@ function displayUsers(output, id, data){
 
 // fetch call to the API
 // TO DO - Complete the code to call the API and display the returned data on the page in the correct place
+fetch("https://randomuser.me/api/?results=12&nat=us,gb")
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        console.log(data.results);
+        displayUsers("userPage1", "pagination1", data);
+    })
+    .catch(err => console.error(err.message));
 
 
 // async/await call to the same API
 // TO DO - Complete the code to call the API using an async function
+async function getUsers(){
+    let response = await fetch("https://randomuser.me/api/?results=12&nat=us,gb");
 
+    if(response.error){
+        throw new Error(`${response.error}`);
+    }
+
+    return await response.json();
+}
+
+getUsers()
+    .then(json => {
+        console.log(json);
+
+        displayUsers("userPage2", "pagination2", json);
+    })
+    .catch(err => console.error(err.message));
 // call our async function and handle the returned promise 
 // TO DO - Complete the code to handle the data returned from the API and display the returned data on the page in the correct place
